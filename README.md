@@ -9,6 +9,11 @@ CodeJudgeBench is a benchmark aimed at evaluating LLM-based judges for coding re
 <img style="height:22pt" src="https://img.shields.io/badge/-🤗%20Dataset-yellow?style=flat">
 </a>
 
+## Installation
+```bash
+pip install -r requirements.txt
+```
+
 ## Quickstart
 Simply change the `model_name` parameter to test any LLMs supported by `vllm`.
 ```bash
