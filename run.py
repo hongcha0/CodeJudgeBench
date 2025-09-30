@@ -43,7 +43,7 @@ def main(args):
 
         # Save results
         os.makedirs("outputs", exist_ok=True)
-        output_file = f"outputs/{args.model_name.split('/')[-1]}_{args.task}-{args.split}.jsonl"
+        output_file = f"outputs/{args.model_name.split('/')[-1]}_{args.task}-{split}.jsonl"
         with open(output_file, 'w') as f:
             for res in results:
                 f.write(json.dumps(res) + '\n')
