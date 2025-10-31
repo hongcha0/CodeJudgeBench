@@ -29,9 +29,9 @@ def main(args):
     else:
         all_splits = [args.split]
 
+    model = ModelFactory.get_model(args.model_name)(args)
     for split in all_splits:
         data = dataset[split].to_list()
-        model = ModelFactory.get_model(args.model_name)(args)
         task = get_task(args.task)
 
         results = []

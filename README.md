@@ -18,16 +18,16 @@ pip install -r requirements.txt
 Simply change the `model_name` parameter to test any LLMs supported by `vllm`.
 ```bash
 # To run codegen task
-python run.py --model_name Qwen3/Qwen3-8B --task codegen --batch_size 32
+python run.py --model_name Qwen/Qwen3-8B --task codegen --batch_size 32
 
 # To run coderepair task
-python run.py --model_name Qwen3/Qwen3-8B --task coderepair --batch_size 32
+python run.py --model_name Qwen/Qwen3-8B --task coderepair --batch_size 32
 
 # To run testgen task
-python run.py --model_name Qwen3/Qwen3-8B --task testgen --batch_size 32
+python run.py --model_name Qwen/Qwen3-8B --task testgen --batch_size 32
 
 # To run a specific task split
-python run.py --model_name Qwen3/Qwen3-8B --task codegen --split gemini_2.5_pro --batch_size 32
+python run.py --model_name Qwen/Qwen3-8B --task codegen --split gemini_2.5_pro --batch_size 32
 
 
 # To get results for a specific model
