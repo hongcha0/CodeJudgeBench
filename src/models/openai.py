@@ -28,10 +28,10 @@ class OpenAIModel(PairwiseModel):
             response = self.client.chat.completions.create(
                 model=self.args.model_name,
                 messages=messages,
-                max_tokens=32768,
-                temperature=self.args.temperature,
-                top_p=self.args.top_p,
-                extra_body={"top_k": self.args.top_k},
+                max_completion_tokens=32768,
+                # temperature=self.args.temperature,
+                # top_p=self.args.top_p,
+                # extra_body={"top_k": self.args.top_k},
                 timeout=60000,
             )
             output = Completion(
