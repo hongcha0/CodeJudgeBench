@@ -7,11 +7,12 @@ from datasets import load_dataset
 
 
 def score(args):
-    splits = load_dataset("mattymchen/codejudgebench", args.task).keys()
+    splits = load_dataset(f"mattymchen/{args.dataset}", args.task).keys()
     all_score = []
     all_difficulty = []
+    output_dir = "outputs" if args.dataset == "codejudgebench" else "outputs-adversarial"
     for s in splits:
-        filepath = f"outputs/{args.model_name.split('/')[-1]}_{args.task}-{s}.jsonl"
+        filepath = f"{output_dir}/{args.model_name.split('/')[-1]}_{args.task}-{s}.jsonl"
         if os.path.exists(filepath):
             with open(filepath, 'r') as f:
                 result = [json.loads(line) for line in f.readlines()]
@@ -35,6 +36,7 @@ def score(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
+    parser.add_argument("--dataset", choices=['codejudgebench', 'codejudgebench-adversarial'], default="codejudgebench")
     parser.add_argument("--model_name", type=str)
     parser.add_argument("--task", type=str)
     args = parser.parse_args()

@@ -23,7 +23,7 @@ def process_batch(batch, task, model, reverse=False):
 
 
 def main(args):
-    dataset = load_dataset("mattymchen/codejudgebench", args.task)
+    dataset = load_dataset(f"mattymchen/{args.dataset}", args.task)
     if args.split == "all":
         all_splits = dataset.keys()
     else:
@@ -42,8 +42,9 @@ def main(args):
             results.extend(process_batch(batch, task, model, reverse=True))
 
         # Save results
-        os.makedirs("outputs", exist_ok=True)
-        output_file = f"outputs/{args.model_name.split('/')[-1]}_{args.task}-{split}.jsonl"
+        output_dir = "outputs" if args.dataset == "codejudgebench" else "outputs-adversarial"
+        os.makedirs(output_dir, exist_ok=True)
+        output_file = f"{output_dir}/{args.model_name.split('/')[-1]}_{args.task}-{split}.jsonl"
         with open(output_file, 'w') as f:
             for res in results:
                 f.write(json.dumps(res) + '\n')
@@ -51,6 +52,7 @@ def main(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
+    parser.add_argument("--dataset", choices=['codejudgebench', 'codejudgebench-adversarial'], default="codejudgebench")
     parser.add_argument("--model_name", type=str, required=True)
     parser.add_argument("--task", choices=['codegen', 'coderepair', 'testgen'], required=True)
     parser.add_argument("--split", type=str, default='all')
