@@ -29,7 +29,7 @@ def main(args):
     else:
         all_splits = [args.split]
 
-    model = ModelFactory.get_model(args.model_name)(args)
+    model = ModelFactory.get_model(args)(args)
     for split in all_splits:
         data = dataset[split].to_list()
         task = get_task(args.task)
@@ -58,6 +58,8 @@ if __name__ == '__main__':
     parser.add_argument("--top_k", type=int, default=-1)
     parser.add_argument("--top_p", type=float, default=0.95)
     parser.add_argument("--temperature", type=float, default=0.6)
+    parser.add_argument("--backend", type=str, choices=['vllm', 'openai'], default='vllm')
+    parser.add_argument("--base_url", type=str, default=None)
     args = parser.parse_args()
 
     main(args)

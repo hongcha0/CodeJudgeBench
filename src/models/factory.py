@@ -3,7 +3,7 @@ from .pairwise import PairwiseModel
 from .qwen3 import Qwen3
 from .qwq import QwQ
 from .rm_r1 import RMR1
-
+from .openai import OpenAIModel
 
 class ModelFactory:
     registry = {
@@ -14,8 +14,11 @@ class ModelFactory:
     }
 
     @classmethod
-    def get_model(cls, model_name):
+    def get_model(cls, args):
+        if args.backend == "openai":
+            return OpenAIModel
+        
         for k, v in cls.registry.items():
-            if k in model_name:
+            if k in args.model_name:
                 return v
         return PairwiseModel

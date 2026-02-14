@@ -36,8 +36,13 @@ python -m src.score --model_name Qwen3/Qwen3-8B --task coderepair
 python -m src.score --model_name Qwen3/Qwen3-8B --task testgen
 ```
 
+## Using OpenAI API
+Create a `.env` file in the project root (e.g., to store OPENAI_API_KEY and any other required variables).
+```bash
+python run.py --model_name gpt-5-nano --task codegen --batch_size 32 --backend openai
+```
 
-### Citation
+## Citation
 If you find CodeJudgeBench useful or relevant to your work, please kindly cite our paper:
 ```bibtex
 @article{jiang2025codejudgebench,
